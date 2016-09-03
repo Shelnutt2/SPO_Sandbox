@@ -70,10 +70,10 @@ bool CPixelBuffer::LoadPNG(const char *pszFile)
 	png_set_sig_bytes(png_ptr, 8);
 	png_read_info(png_ptr, info_ptr);
 
-	if(info_ptr->color_type == PNG_COLOR_TYPE_RGB && info_ptr->bit_depth == 8)
-		Init(info_ptr->width, info_ptr->height, 1, 3, GL_RGB);
-	else if(info_ptr->color_type == PNG_COLOR_TYPE_RGB_ALPHA && info_ptr->bit_depth == 8)
-		Init(info_ptr->width, info_ptr->height, 1, 4, GL_RGBA);
+	if(png_get_color_type(png_ptr, info_ptr) == PNG_COLOR_TYPE_RGB && png_get_bit_depth(png_ptr, info_ptr) == 8)
+		Init(png_get_image_width(png_ptr, info_ptr), png_get_image_height(png_ptr, info_ptr), 1, 3, GL_RGB);
+	else if(png_get_color_type(png_ptr, info_ptr) == PNG_COLOR_TYPE_RGB_ALPHA && png_get_bit_depth(png_ptr, info_ptr) == 8)
+		Init(png_get_image_width(png_ptr, info_ptr), png_get_image_height(png_ptr, info_ptr), 1, 4, GL_RGBA);
 	else
 	{
 		LogError("Attempting to read an unsupported format from %s.", pszFile);
