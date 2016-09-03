@@ -33,9 +33,11 @@ protected:
 			case GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT_EXT:
 				LogError("Framebuffer incomplete, missing attachment");
 				break;
+#if not defined(__APPLE__)// this define was removed in glext.h versions 39 and greater
 			case GL_FRAMEBUFFER_INCOMPLETE_DUPLICATE_ATTACHMENT_EXT:
 				LogError("Framebuffer incomplete, duplicate attachment");
 				break;
+#endif
 			case GL_FRAMEBUFFER_INCOMPLETE_DIMENSIONS_EXT:
 				LogError("Framebuffer incomplete, attached images must have same dimensions");
 				break;
