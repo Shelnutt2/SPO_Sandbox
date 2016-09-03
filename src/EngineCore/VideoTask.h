@@ -30,7 +30,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef __VideoTask_h__
 #define __VideoTask_h__
 
+#if defined(__APPLE__)
+#include <SDL/SDL_syswm.h>
+#else
 #include <SDL_syswm.h>
+#endif
 
 
 class CVideoTask : public CKernelTask, public TSingleton<CVideoTask>

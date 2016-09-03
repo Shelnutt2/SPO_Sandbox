@@ -72,8 +72,16 @@ extern "C" {
 
 // OpenGL/SDL headers
 #include <GL/glew.h>
+//#include <GL/gl.h>
+#if defined(__APPLE__)
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#include <SDL/SDL.h>
+#else
 #include <GL/gl.h>
+#include <GL/glu.h>
 #include <SDL.h>
+#endif
 
 
 #endif // __CommonIncludes_h__
