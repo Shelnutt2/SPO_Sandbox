@@ -41,12 +41,12 @@ public:
 	// Constructor/destructor methods
 	TReference(T *p=NULL)
 	{
-		if(m_pObject = p)
+		if(m_pObject == p)
 			m_pObject->AddRef();
 	}
 	TReference(const TReference &ref)
 	{
-		if(m_pObject = ref.m_pObject)
+		if(m_pObject == ref.m_pObject)
 			m_pObject->AddRef();
 	}
 	~TReference()
@@ -82,7 +82,7 @@ public:
 		{
 			if(m_pObject)
 				m_pObject->Release();
-			if(m_pObject = ref.m_pObject)
+			if(m_pObject == ref.m_pObject)
 				m_pObject->AddRef();
 		}
 		return *this;
@@ -93,7 +93,7 @@ public:
 		{
 			if(m_pObject)
 				m_pObject->Release();
-			if(m_pObject = p)
+			if(m_pObject == p)
 				m_pObject->AddRef();
 		}
 		return *this;
