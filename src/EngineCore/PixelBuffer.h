@@ -35,7 +35,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #define ALIGN_SIZE		64
 #define ALIGN_MASK		(ALIGN_SIZE-1)
-#define ALIGN(x)		(((unsigned int)x+ALIGN_MASK) & ~ALIGN_MASK)
+#define ALIGN(x)		(((uintptr_t)x+ALIGN_MASK) & ~ALIGN_MASK)
 
 typedef enum
 {
@@ -111,11 +111,11 @@ public:
 
 	void *operator[](const int n)
 	{
-		return (void *)((unsigned int)m_pBuffer + n * m_nElementSize);
+		return (void *)((uintptr_t)m_pBuffer + n * m_nElementSize);
 	}
 	void *operator()(const int x, const int y, const int z)
 	{
-		return (void *)((unsigned int)m_pBuffer + m_nElementSize * (m_nWidth * (m_nHeight * z + y) + x));
+		return (void *)((uintptr_t)m_pBuffer + m_nElementSize * (m_nWidth * (m_nHeight * z + y) + x));
 	}
 
 	void *operator()(const float x)
