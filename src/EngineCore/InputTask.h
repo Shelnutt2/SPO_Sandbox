@@ -125,7 +125,7 @@ public:
 
 	virtual void Stop()				{}
 
-	bool IsKeyDown(int n)			{ return m_bConsoleActive ? false : m_pKeys[n] != 0; }
+	bool IsKeyDown(int n)			{ return m_bConsoleActive ? false : m_pKeys[SDL_GetScancodeFromKey(n)] != 0; }
 	bool IsMouseButtonDown(int n)	{ return m_bConsoleActive ? false : (m_nMouseButtons & SDL_BUTTON(n)) != 0; }
 	int GetMouseX()					{ return m_bConsoleActive ? 0 : m_nMouseX; }
 	int GetMouseY()					{ return m_bConsoleActive ? 0 : m_nMouseY; }
