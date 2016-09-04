@@ -32,8 +32,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #if defined(__APPLE__)
 #include <SDL2/SDL_syswm.h>
+#include <SDL2/SDL_opengl.h>
 #else
 #include <SDL_syswm.h>
+#include <SDL_opengl.h>
 #endif
 
 
@@ -54,6 +56,8 @@ protected:
 	int m_nWidth, m_nHeight;
 
 	SDL_Window *screen;
+	//OpenGL context
+	SDL_GLContext gContext;
 
 public:
 	DEFAULT_TASK_CREATOR(CVideoTask);
@@ -79,7 +83,7 @@ public:
 		m_nWidth = 800;
 		m_nHeight = 600;
 
-		if(SDL_InitSubSystem(SDL_INIT_VIDEO) == -1)
+		if(SDL_Init(SDL_INIT_VIDEO) == -1)
 		{
 			LogCritical(SDL_GetError());
 			LogAssert(false);
@@ -93,27 +97,29 @@ public:
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
 #if 1
-		int nFlags = SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI;
+		int nFlags = SDL_WINDOW_OPENGL ;
 #else
-		int nFlags = SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_FULLSCREEN;
+		int nFlags = SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN;
 #endif
 
-		/*if(!::init("libGL.so.1"))
-		{
-			LogCritical(SDL_GetError());
-			LogAssert(false);
-			return false;
-		}*/
 
 		screen = SDL_CreateWindow("SPO Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, m_nWidth, m_nHeight, nFlags);
-		if(!screen)
+		if(!screen || screen == NULL)
 		{
 			LogCritical(SDL_GetError());
 			LogAssert(false);
 			return false;
 		}
 
-		glViewport(0, 0, m_nWidth, m_nHeight);
+		//Create context
+		gContext = SDL_GL_CreateContext( screen );
+		if( gContext == NULL )
+		{
+			LogCritical(SDL_GetError());
+			LogAssert(false);
+			return false;
+		}
+		glViewport(0, 0,(GLsizei) m_nWidth, (GLsizei) m_nHeight);
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 		gluPerspective(45.0, (double)m_nWidth / (double)m_nHeight, 0.001, 100.0);
