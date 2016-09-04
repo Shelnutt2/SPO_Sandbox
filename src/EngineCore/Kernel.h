@@ -88,7 +88,7 @@ protected:
 
 	CKernel()
 	{
-		SDL_Init(0);
+		SDL_Init(SDL_INIT_VIDEO);
 	}
 	~CKernel()
 	{
