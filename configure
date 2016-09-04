@@ -4194,7 +4194,7 @@ if test "${ac_cv_lib_GL_glBegin+set}" = set; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
 else
   ac_check_lib_save_LIBS=$LIBS
-LIBS="-lGL  $LIBS"
+LIBS="-framework OpenGL  $LIBS"
 cat >conftest.$ac_ext <<_ACEOF
 /* confdefs.h.  */
 _ACEOF
@@ -4257,7 +4257,7 @@ if test $ac_cv_lib_GL_glBegin = yes; then
 #define HAVE_LIBGL 1
 _ACEOF
 
-  LIBS="-lGL $LIBS"
+  LIBS="-framework OpenGL $LIBS"
 
 fi
 
@@ -4342,7 +4342,7 @@ if test "${ac_cv_lib_SDL_1_1_SDL_InitSubSystem+set}" = set; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
 else
   ac_check_lib_save_LIBS=$LIBS
-LIBS="-lSDL-1.1  $LIBS"
+LIBS="-lSDLmain -lSDL -framework Cocoa  $LIBS"
 cat >conftest.$ac_ext <<_ACEOF
 /* confdefs.h.  */
 _ACEOF
@@ -4405,7 +4405,7 @@ if test $ac_cv_lib_SDL_1_1_SDL_InitSubSystem = yes; then
 #define HAVE_LIBSDL_1_1 1
 _ACEOF
 
-  LIBS="-lSDL-1.1 $LIBS"
+  LIBS="-lSDLmain -lSDL -framework Cocoa $LIBS"
 
 fi
 

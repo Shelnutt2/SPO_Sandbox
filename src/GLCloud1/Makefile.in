@@ -149,7 +149,7 @@ sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 INCLUDES = -I$(top_srcdir)/src/EngineCore
-LDADD = -lpthread -lpng -lGL -lGLEW -lSDL-1.1 $(top_builddir)/src/EngineCore/libEngineCore.a
+LDADD = -lpthread -lpng -framework OpenGL -lGLEW -lSDLmain -lSDL -framework Cocoa $(top_builddir)/src/EngineCore/libEngineCore.a
 GLCloud1_SOURCES = GLCloud1.cpp CloudBlock.cpp CloudBlock.h
 all: all-am
 
