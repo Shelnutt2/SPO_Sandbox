@@ -31,7 +31,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define __VideoTask_h__
 
 #if defined(__APPLE__)
-#include <SDL/SDL_syswm.h>
+#include <SDL2/SDL_syswm.h>
 #else
 #include <SDL_syswm.h>
 #endif
@@ -150,7 +150,7 @@ public:
 		}
 
 		SDL_VERSION(&m_sdlInfo.version);
-		SDL_GetWMInfo(&m_sdlInfo);
+		SDL_GetWindowWMInfo(screen, &m_sdlInfo);
 		LOG_GLERROR();
 		return true;
 	}
