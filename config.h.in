@@ -18,8 +18,8 @@
 /* Define to 1 if you have the `pthread' library (-lpthread). */
 #undef HAVE_LIBPTHREAD
 
-/* Define to 1 if you have the `SDL-1.1' library (-lSDL-1.1). */
-#undef HAVE_LIBSDL_1_1
+/* Define to 1 if you have the `SDL2' library (-lSDL2). */
+#undef HAVE_LIBSDL2
 
 /* Define to 1 if you have the <memory.h> header file. */
 #undef HAVE_MEMORY_H
