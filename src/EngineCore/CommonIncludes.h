@@ -76,11 +76,11 @@ extern "C" {
 #if defined(__APPLE__)
 #include <OpenGL/gl.h>
 #include <OpenGL/glu.h>
-#include <SDL/SDL.h>
+#include <SDL2/SDL.h>
 #else
 #include <GL/gl.h>
 #include <GL/glu.h>
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #endif
 
 
