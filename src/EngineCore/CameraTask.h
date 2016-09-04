@@ -62,17 +62,17 @@ public:
 		PROFILE("CCameraTask::Update()", 1);
 		float fSeconds = (float)CTimerTask::GetPtr()->GetFrameSeconds();
 
-		if(CInputTask::GetPtr()->IsKeyDown(SDLK_KP2) || CInputTask::GetPtr()->IsKeyDown(SDLK_DOWN))
+		if(CInputTask::GetPtr()->IsKeyDown(SDLK_KP_2) || CInputTask::GetPtr()->IsKeyDown(SDLK_DOWN))
 			m_srtCamera.Rotate(CQuaternion(m_srtCamera.GetRightAxis(), fSeconds*0.5f));
-		if(CInputTask::GetPtr()->IsKeyDown(SDLK_KP8) || CInputTask::GetPtr()->IsKeyDown(SDLK_UP))
+		if(CInputTask::GetPtr()->IsKeyDown(SDLK_KP_8) || CInputTask::GetPtr()->IsKeyDown(SDLK_UP))
 			m_srtCamera.Rotate(CQuaternion(m_srtCamera.GetRightAxis(), -fSeconds*0.5f));
-		if(CInputTask::GetPtr()->IsKeyDown(SDLK_KP4) || CInputTask::GetPtr()->IsKeyDown(SDLK_LEFT))
+		if(CInputTask::GetPtr()->IsKeyDown(SDLK_KP_4) || CInputTask::GetPtr()->IsKeyDown(SDLK_LEFT))
 			m_srtCamera.Rotate(CQuaternion(m_srtCamera.GetUpAxis(), fSeconds*0.5f));
-		if(CInputTask::GetPtr()->IsKeyDown(SDLK_KP6) || CInputTask::GetPtr()->IsKeyDown(SDLK_RIGHT))
+		if(CInputTask::GetPtr()->IsKeyDown(SDLK_KP_6) || CInputTask::GetPtr()->IsKeyDown(SDLK_RIGHT))
 			m_srtCamera.Rotate(CQuaternion(m_srtCamera.GetUpAxis(), -fSeconds*0.5f));
-		if(CInputTask::GetPtr()->IsKeyDown(SDLK_KP7) || CInputTask::GetPtr()->IsKeyDown(SDLK_q))
+		if(CInputTask::GetPtr()->IsKeyDown(SDLK_KP_7) || CInputTask::GetPtr()->IsKeyDown(SDLK_q))
 			m_srtCamera.Rotate(CQuaternion(m_srtCamera.GetViewAxis(), -fSeconds*0.5f));
-		if(CInputTask::GetPtr()->IsKeyDown(SDLK_KP9) || CInputTask::GetPtr()->IsKeyDown(SDLK_e))
+		if(CInputTask::GetPtr()->IsKeyDown(SDLK_KP_9) || CInputTask::GetPtr()->IsKeyDown(SDLK_e))
 			m_srtCamera.Rotate(CQuaternion(m_srtCamera.GetViewAxis(), fSeconds*0.5f));
 
 		CVector vAccel(0.0f);
