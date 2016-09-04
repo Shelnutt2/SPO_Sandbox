@@ -53,6 +53,8 @@ protected:
 	SDL_SysWMinfo m_sdlInfo;
 	int m_nWidth, m_nHeight;
 
+	SDL_Window *screen;
+
 public:
 	DEFAULT_TASK_CREATOR(CVideoTask);
 
@@ -91,9 +93,9 @@ public:
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
 #if 1
-		int nFlags = SDL_OPENGL | SDL_ANYFORMAT;
+		int nFlags = SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI;
 #else
-		int nFlags = SDL_OPENGL | SDL_ANYFORMAT | SDL_FULLSCREEN;
+		int nFlags = SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_FULLSCREEN;
 #endif
 
 		/*if(!::init("libGL.so.1"))
@@ -103,7 +105,8 @@ public:
 			return false;
 		}*/
 
-		if(!SDL_SetVideoMode(m_nWidth, m_nHeight, 32, nFlags))
+		screen = SDL_CreateWindow("SPO Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, m_nWidth, m_nHeight, nFlags);
+		if(!screen)
 		{
 			LogCritical(SDL_GetError());
 			LogAssert(false);
@@ -178,7 +181,7 @@ public:
 		}
 
 		// Swap the back buffer to the front buffer
-		SDL_GL_SwapBuffers();
+		SDL_GL_SwapWindow(screen);
 		LOG_GLERROR();
 	}
 
