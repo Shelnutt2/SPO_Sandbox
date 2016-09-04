@@ -45,7 +45,7 @@ class CInputTask : public CKernelTask, public TSingleton<CInputTask>
 {
 protected:
 	int m_nKeyCount;
-	unsigned char *m_pKeys;
+	const unsigned char *m_pKeys;
 
 	int m_nMouseX, m_nMouseY;
 	unsigned int m_nMouseButtons;
@@ -62,8 +62,7 @@ public:
 	{
 		m_pConsole = NULL;
 		m_bConsoleActive = false;
-		SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
-		m_pKeys = SDL_GetKeyState(&m_nKeyCount);
+		m_pKeys = SDL_GetKeyboardState(&m_nKeyCount);
 		m_nMouseButtons = SDL_GetRelativeMouseState(&m_nMouseX, &m_nMouseY);
 		SDL_PumpEvents();
 		SDL_PumpEvents();
@@ -79,7 +78,7 @@ public:
 			std::list<IInputEventListener *>::iterator it = m_listeners.begin();
 			switch(event.type)
 			{
-				case SDL_ACTIVEEVENT:
+				case SDL_WINDOWEVENT:
 					while(it != m_listeners.end())
 						(*it++)->OnActivate(true);
 					break;
@@ -120,7 +119,7 @@ public:
 		}
 
 		//SDL_PumpEvents();
-		m_pKeys = SDL_GetKeyState(&m_nKeyCount);
+		m_pKeys = SDL_GetKeyboardState(&m_nKeyCount);
 		m_nMouseButtons = SDL_GetRelativeMouseState(&m_nMouseX, &m_nMouseY);
 	}
 
